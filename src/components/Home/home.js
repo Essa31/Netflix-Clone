@@ -24,6 +24,7 @@ export default function Home() {
           return trend;
         }
       })
+      //const [trending, setTrending] = useState([])
       setTrending(updateTrend);
      }
     useEffect(() => {
