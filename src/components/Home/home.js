@@ -1,6 +1,6 @@
 import { useState,useEffect} from "react";
 import MovieList from "../MovieList/movielist";
-    
+    import NavBar from "../Navbar/Navbar";
 
 export default function Home() {
     const [trending, setTrending] = useState([]);
@@ -13,14 +13,28 @@ export default function Home() {
        console.log("3,response", movieData);
     setTrending(movieData)
     }
+
+    function updateTrend(newTrend, id) {
+      console.log("newTrend", newTrend, id);
+      let updateTrend = trending.map(trend => {
+        if (trend.id === id) {
+          trend.comment = newTrend.userComment;
+          return trend;
+        } else {
+          return trend;
+        }
+      })
+      setTrending(updateTrend);
+     }
     useEffect(() => {
         getMovies();
       }, []);
       return (
         <>
           <h1>Home Page</h1>
+          <NavBar/>
           {
-            (trending.length>0)&&<MovieList trending={trending} />
+            (trending.length>0)&&<MovieList trending={trending} updateTrend={updateTrend} />
           }
         </>
       );

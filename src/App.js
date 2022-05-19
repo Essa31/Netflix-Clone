@@ -12,7 +12,7 @@ export default function App(){
     return(
         <Routes>
             <Route path="/"element={<Home/>}/>
-            <Route path="/getMovies"element={<FavMovie/>}/>
+            <Route path="/favorite" element={<FavMovie />} />
         </Routes>
     )
 }

@@ -1,16 +1,27 @@
-import React from "react";
-import { Nav } from "react-bootstrap";
-export default function Navbar() {
+// import { Link } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar'
+
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+
+
+function NavBar() {
     return (
-     <>
-     </>
-    );
+        <>
+           
+            <Navbar bg="primary" variant="dark">
+                <Container>
+                    <Navbar.Brand href="#home">Yummy</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/favorite">Fav Movie</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
+
+        </>
+    )
 }
-{/* <Nav>
-<Nav.Item>
-    <Nav.Link href="/">Home</Nav.Link>
-</Nav.Item>
-<Nav.Item>
-    <Nav.Link href="/getMovies">Favorite</Nav.Link>
-</Nav.Item>
-</Nav> */}
+
+export default NavBar;
+

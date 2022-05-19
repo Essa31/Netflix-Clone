@@ -1,11 +1,22 @@
 import React from "react";
+import useRef  from "react";
 
-
-
+import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 // { movies, show, handleClose,addToFavList }
 function movieModal(props) {
+  let commentRef = useRef
+  function handleComment(e){
+    e.preventDefault();
+    let userComment = commentRef.current.value;
+    console.log(userComment);
+    // let newRecipe = { ...props.choosenCard, comment: userComment }
+    let newTrend = { ...props.choosenCard, userComment };
+    
+   props.updateTrend(newTrend,newTrend.id)
+  }
+
 return(
   <>
  <Modal show={props.show} onHide={props.handleClose}>
@@ -14,17 +25,36 @@ return(
         </Modal.Header>
         <Modal.Body>
           <img src={props.choosenCard.poster_path} alt="trind"/>
+          <br/>
+          <p>
+            {props.choosenCard.comment
+              ? props.choosenCard.comment
+              : "No comment added"}
+          </p>
           <p>{props.choosenCard.overview}</p>
+          <Form>
+<Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Label>Add Comment</Form.Label>
+    <Form.Control  ref={commentRef} type="text" placeholder="Enter Comment" />
+    <Form.Text className="text-muted">
+    add your own comment
+    </Form.Text>
+  </Form.Group>
+
+  
+  <Button variant="primary" type="submit" on  onClick={(e) => handleComment(e)}>
+    Submit comment
+  </Button>
+</Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.handleClose}>
-            Save Changes
-          </Button>
+          
         </Modal.Footer>
       </Modal>
+    
   </>
 )
 
